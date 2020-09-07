@@ -203,14 +203,14 @@ var rrwebRecord = (function () {
             case n.DOCUMENT_NODE:
                 return {
                     type: NodeType.Document,
-                    childNodes: []
+                    childNodes: [],
                 };
             case n.DOCUMENT_TYPE_NODE:
                 return {
                     type: NodeType.DocumentType,
                     name: n.name,
                     publicId: n.publicId,
-                    systemId: n.systemId
+                    systemId: n.systemId,
                 };
             case n.ELEMENT_NODE:
                 var needBlock_1 = false;
@@ -301,7 +301,7 @@ var rrwebRecord = (function () {
                     attributes: attributes_1,
                     childNodes: [],
                     isSVG: isSVGElement(n) || undefined,
-                    needBlock: needBlock_1
+                    needBlock: needBlock_1,
                 };
             case n.TEXT_NODE:
                 var parentTagName = n.parentNode && n.parentNode.tagName;
@@ -316,17 +316,17 @@ var rrwebRecord = (function () {
                 return {
                     type: NodeType.Text,
                     textContent: textContent || '',
-                    isStyle: isStyle
+                    isStyle: isStyle,
                 };
             case n.CDATA_SECTION_NODE:
                 return {
                     type: NodeType.CDATA,
-                    textContent: ''
+                    textContent: '',
                 };
             case n.COMMENT_NODE:
                 return {
                     type: NodeType.Comment,
-                    textContent: n.textContent || ''
+                    textContent: n.textContent || '',
                 };
             default:
                 return false;
@@ -388,7 +388,7 @@ var rrwebRecord = (function () {
                 url: true,
                 week: true,
                 textarea: true,
-                select: true
+                select: true,
             }
             : maskAllInputsOrOptions === false
                 ? {}

@@ -124,8 +124,8 @@ var rrwebReplay = (function (exports) {
                 stylesheet: {
                     source: options.source,
                     rules: rulesList,
-                    parsingErrors: errorsList
-                }
+                    parsingErrors: errorsList,
+                },
             };
         }
         function open() {
@@ -192,7 +192,7 @@ var rrwebReplay = (function (exports) {
             column += 2;
             return pos({
                 type: 'comment',
-                comment: str
+                comment: str,
             });
         }
         function selector() {
@@ -224,7 +224,7 @@ var rrwebReplay = (function (exports) {
             var ret = pos({
                 type: 'declaration',
                 property: prop.replace(commentre, ''),
-                value: val ? trim(val[0]).replace(commentre, '') : ''
+                value: val ? trim(val[0]).replace(commentre, '') : '',
             });
             match(/^[;\s]*/);
             return ret;
@@ -262,7 +262,7 @@ var rrwebReplay = (function (exports) {
             return pos({
                 type: 'keyframe',
                 values: vals,
-                declarations: declarations()
+                declarations: declarations(),
             });
         }
         function atkeyframes() {
@@ -293,7 +293,7 @@ var rrwebReplay = (function (exports) {
                 type: 'keyframes',
                 name: name,
                 vendor: vendor,
-                keyframes: frames
+                keyframes: frames,
             });
         }
         function atsupports() {
@@ -313,7 +313,7 @@ var rrwebReplay = (function (exports) {
             return pos({
                 type: 'supports',
                 supports: supports,
-                rules: style
+                rules: style,
             });
         }
         function athost() {
@@ -331,7 +331,7 @@ var rrwebReplay = (function (exports) {
             }
             return pos({
                 type: 'host',
-                rules: style
+                rules: style,
             });
         }
         function atmedia() {
@@ -351,7 +351,7 @@ var rrwebReplay = (function (exports) {
             return pos({
                 type: 'media',
                 media: media,
-                rules: style
+                rules: style,
             });
         }
         function atcustommedia() {
@@ -363,7 +363,7 @@ var rrwebReplay = (function (exports) {
             return pos({
                 type: 'custom-media',
                 name: trim(m[1]),
-                media: trim(m[2])
+                media: trim(m[2]),
             });
         }
         function atpage() {
@@ -388,7 +388,7 @@ var rrwebReplay = (function (exports) {
             return pos({
                 type: 'page',
                 selectors: sel,
-                declarations: decls
+                declarations: decls,
             });
         }
         function atdocument() {
@@ -410,7 +410,7 @@ var rrwebReplay = (function (exports) {
                 type: 'document',
                 document: doc,
                 vendor: vendor,
-                rules: style
+                rules: style,
             });
         }
         function atfontface() {
@@ -433,7 +433,7 @@ var rrwebReplay = (function (exports) {
             }
             return pos({
                 type: 'font-face',
-                declarations: decls
+                declarations: decls,
             });
         }
         var atimport = _compileAtrule('import');
@@ -478,7 +478,7 @@ var rrwebReplay = (function (exports) {
             return pos({
                 type: 'rule',
                 selectors: sel,
-                declarations: declarations()
+                declarations: declarations(),
             });
         }
         return addParent(stylesheet());
@@ -506,7 +506,7 @@ var rrwebReplay = (function (exports) {
                 configurable: true,
                 writable: true,
                 enumerable: false,
-                value: parent || null
+                value: parent || null,
             });
         }
         return obj;
@@ -549,7 +549,7 @@ var rrwebReplay = (function (exports) {
         foreignobject: 'foreignObject',
         glyphref: 'glyphRef',
         lineargradient: 'linearGradient',
-        radialgradient: 'radialGradient'
+        radialgradient: 'radialGradient',
     };
     function getTagName(n) {
         var tagName = tagMap[n.tagName] ? tagMap[n.tagName] : n.tagName;
@@ -613,9 +613,6 @@ var rrwebReplay = (function (exports) {
                                 }
                             }
                             node_1.appendChild(child);
-                            return "continue";
-                        }
-                        if (tagName === 'iframe' && name === 'src') {
                             return "continue";
                         }
                         try {
