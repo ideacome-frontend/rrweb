@@ -3310,6 +3310,7 @@ var rrweb = (function (exports) {
         insertStyleRules: [],
         triggerFocus: true,
         UNSAFE_replayCanvas: false,
+        ALLOW_JS: false,
     };
     var Replayer = (function () {
         function Replayer(events, config) {
@@ -3516,8 +3517,8 @@ var rrweb = (function (exports) {
             this.mouse.classList.add('replayer-mouse');
             this.wrapper.appendChild(this.mouse);
             this.iframe = document.createElement('iframe');
-            var attributes = ['allow-same-origin', 'allow-scripts'];
-            if (this.config.UNSAFE_replayCanvas) {
+            var attributes = ['allow-same-origin'];
+            if (this.config.UNSAFE_replayCanvas || this.config.ALLOW_JS) {
                 attributes.push('allow-scripts');
             }
             this.iframe.setAttribute('sandbox', attributes.join(' '));

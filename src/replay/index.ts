@@ -52,6 +52,7 @@ const defaultConfig: playerConfig = {
   insertStyleRules: [],
   triggerFocus: true,
   UNSAFE_replayCanvas: false,
+  ALLOW_JS: false,
 };
 
 export class Replayer {
@@ -293,8 +294,8 @@ export class Replayer {
     this.wrapper.appendChild(this.mouse);
 
     this.iframe = document.createElement('iframe');
-    const attributes = ['allow-same-origin', 'allow-scripts'];
-    if (this.config.UNSAFE_replayCanvas) {
+    const attributes = ['allow-same-origin'];
+    if (this.config.UNSAFE_replayCanvas || this.config.ALLOW_JS) {
       attributes.push('allow-scripts');
     }
     this.iframe.setAttribute('sandbox', attributes.join(' '));
