@@ -231,7 +231,7 @@ var Replayer = (function () {
         this.mouse.classList.add('replayer-mouse');
         this.wrapper.appendChild(this.mouse);
         this.iframe = document.createElement('iframe');
-        var attributes = ['allow-same-origin'];
+        var attributes = ['allow-same-origin', 'allow-scripts'];
         if (this.config.UNSAFE_replayCanvas) {
             attributes.push('allow-scripts');
         }

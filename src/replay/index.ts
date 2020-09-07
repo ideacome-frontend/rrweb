@@ -293,7 +293,7 @@ export class Replayer {
     this.wrapper.appendChild(this.mouse);
 
     this.iframe = document.createElement('iframe');
-    const attributes = ['allow-same-origin'];
+    const attributes = ['allow-same-origin', 'allow-scripts'];
     if (this.config.UNSAFE_replayCanvas) {
       attributes.push('allow-scripts');
     }
