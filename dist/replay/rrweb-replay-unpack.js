@@ -2016,10 +2016,8 @@ var rrwebReplay = (function (exports) {
             var _this = this;
             Object.keys(config).forEach(function (key) {
                 _this.config[key] = config[key];
-                console.log(key);
                 if (key === 'speed') {
                     var payload = { speed: config[key] || 1 };
-                    console.log(payload);
                     _this.speedService.send({ type: 'SET_SPEED', payload: payload });
                     _this.emitter.emit(ReplayerEvents.SkipStart, payload);
                 }
