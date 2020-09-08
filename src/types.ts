@@ -382,7 +382,6 @@ export type playerConfig = {
   insertStyleRules: string[];
   triggerFocus: boolean;
   UNSAFE_replayCanvas: boolean;
-  ALLOW_JS: boolean;
   unpackFn?: UnpackFn;
 };
 

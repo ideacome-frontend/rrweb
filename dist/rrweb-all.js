@@ -3310,7 +3310,6 @@ var rrweb = (function (exports) {
         insertStyleRules: [],
         triggerFocus: true,
         UNSAFE_replayCanvas: false,
-        ALLOW_JS: false,
     };
     var Replayer = (function () {
         function Replayer(events, config) {
@@ -3441,6 +3440,13 @@ var rrweb = (function (exports) {
             var _this = this;
             Object.keys(config).forEach(function (key) {
                 _this.config[key] = config[key];
+                console.log(key);
+                if (key === 'speed') {
+                    var payload = { speed: config[key] || 1 };
+                    console.log(payload);
+                    _this.speedService.send({ type: 'SET_SPEED', payload: payload });
+                    _this.emitter.emit(exports.ReplayerEvents.SkipStart, payload);
+                }
             });
             if (!this.config.skipInactive) {
                 this.backToNormal();
@@ -3518,7 +3524,7 @@ var rrweb = (function (exports) {
             this.wrapper.appendChild(this.mouse);
             this.iframe = document.createElement('iframe');
             var attributes = ['allow-same-origin'];
-            if (this.config.UNSAFE_replayCanvas || this.config.ALLOW_JS) {
+            if (this.config.UNSAFE_replayCanvas) {
                 attributes.push('allow-scripts');
             }
             this.iframe.setAttribute('sandbox', attributes.join(' '));

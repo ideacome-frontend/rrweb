@@ -52,7 +52,6 @@ const defaultConfig: playerConfig = {
   insertStyleRules: [],
   triggerFocus: true,
   UNSAFE_replayCanvas: false,
-  ALLOW_JS: false,
 };
 
 export class Replayer {
@@ -196,6 +195,11 @@ export class Replayer {
     Object.keys(config).forEach((key) => {
       // @ts-ignore
       this.config[key] = config[key];
+      if (key === 'speed') {
+        const payload = { speed: config[key] || 1 }
+        this.speedService.send({ type: 'SET_SPEED', payload});
+        this.emitter.emit(ReplayerEvents.SkipStart, payload);
+      }
     });
     if (!this.config.skipInactive) {
       this.backToNormal();
@@ -295,7 +299,7 @@ export class Replayer {
 
     this.iframe = document.createElement('iframe');
     const attributes = ['allow-same-origin'];
-    if (this.config.UNSAFE_replayCanvas || this.config.ALLOW_JS) {
+    if (this.config.UNSAFE_replayCanvas) {
       attributes.push('allow-scripts');
     }
     this.iframe.setAttribute('sandbox', attributes.join(' '));
