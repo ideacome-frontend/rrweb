@@ -196,7 +196,7 @@ export class Replayer {
       // @ts-ignore
       this.config[key] = config[key];
       if (key === 'speed') {
-        const payload = { speed: config[key] || 1 }
+        const payload = { speed: config[key] || 1 };
         this.speedService.send({ type: 'SET_SPEED', payload});
         this.emitter.emit(ReplayerEvents.SkipStart, payload);
       }
